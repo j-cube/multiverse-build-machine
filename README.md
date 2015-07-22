@@ -1,2 +1,31 @@
-# multiverse-build-machine
-A build machine for multiverse
+multiverse build machine
+========================
+
+Completely automates the build process for [multiverse](https://github.com/j-cube/multiverse) by using [Vagrant](https://www.vagrantup.com/)
+and [alembic-builder](https://github.com/j-cube/alembic-builder).
+
+Let's walk the walk
+-------------------
+
+First of all, [install Vagrant](http://docs.vagrantup.com/v2/installation/index.html) if not already installed.
+
+Then:
+
+```
+$ vagrant up
+$ vagrant ssh
+vagrant@precise64:~$ ls /opt/jcube
+bin  docs include  lib  multiverse-1.5.8 share
+$ vagrant ssh
+vagrant@precise64:~$ ls /opt/jcube/multiverse-1.5.8/bin/
+...
+abcconvert
+abcecho
+abcechobounds
+abchistory
+abcls
+abctree
+...
+```
+
+Enjoy!
