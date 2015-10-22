@@ -12,7 +12,7 @@ Vagrant.configure(2) do |config|
 
   # Every Vagrant development environment requires a box. You can search for
   # boxes at https://atlas.hashicorp.com/search.
-  config.vm.box = "hashicorp/precise64"
+  config.vm.box = "ubuntu/trusty64"
 
   # Disable automatic box update checking. If you disable this, then
   # boxes will only be checked for updates when the user runs
@@ -79,7 +79,9 @@ Vagrant.configure(2) do |config|
   # SHELL
 
   config.vm.provision "shell", inline: <<-SHELL
+    sleep 30
     sudo apt-get update
+    sudo apt-get -q -y autoremove
     sudo apt-get -q clean
     sudo apt-get -q -y --no-install-recommends --no-upgrade install wget curl tcl build-essential zlib1g-dev
     sudo apt-get -q -y --no-install-recommends --no-upgrade install manpages-dev autoconf2.13 automake libtool
@@ -95,6 +97,7 @@ Vagrant.configure(2) do |config|
     sudo apt-get -q -y --no-install-recommends --no-upgrade install libgl1-mesa-dev libglew1.6-dev freeglut3 freeglut3-dev libxmu-dev libxi-dev
     sudo apt-get -q -y --no-install-recommends --no-upgrade install doxygen mg
     sudo apt-get -q clean
+    sudo apt-get -q -y autoremove
 
     sudo addgroup developers
     sudo adduser vagrant developers
@@ -103,7 +106,7 @@ Vagrant.configure(2) do |config|
       git clone https://github.com/j-cube/alembic-builder
     fi
     cd alembic-builder
-    git checkout linux-multiverse-1.5.8
+    git checkout linux-gcc48-multiverse-1.5.8
     perl -pi -e 's/wget --content-disposition/wget -q --content-disposition/' do-*.sh
     source env-build-setup.sh
     ./do-build-all.sh
