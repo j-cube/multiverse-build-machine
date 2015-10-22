@@ -8,10 +8,13 @@ Let's walk the walk
 -------------------
 
 First of all, [install Vagrant](http://docs.vagrantup.com/v2/installation/index.html) if not already installed.
+Secondly, [download & install Virtual Box](https://www.virtualbox.org/wiki/Downloads) if not already installed.
 
 Then:
 
 ```
+$ git clone https://github.com/j-cube/multiverse-build-machine
+$ cd multiverse-build-machine
 $ vagrant up
 $ vagrant ssh
 vagrant@precise64:~$ ls /opt/jcube
