@@ -16,10 +16,13 @@ Then:
 $ git clone https://github.com/j-cube/multiverse-build-machine
 $ cd multiverse-build-machine
 $ vagrant up
+```
+This will create a VM using UbuntuPrecise64 and compile multiverse with gcc 4.6
+
+```
 $ vagrant ssh
 vagrant@precise64:~$ ls /opt/jcube
 bin  docs include  lib  multiverse-1.5.8 share
-$ vagrant ssh
 vagrant@precise64:~$ ls /opt/jcube/multiverse-1.5.8/bin/
 ...
 abcconvert
