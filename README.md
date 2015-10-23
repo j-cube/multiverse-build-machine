@@ -6,11 +6,11 @@ and [alembic-builder](https://github.com/j-cube/alembic-builder).
 
 Note that we have multiple branches supporting multiple Linux versions (and `gcc` versions that match the [VFX reference platform](http://www.vfxplatform.com))
 
-| Branch                               | O/S              | gcc    |
-|--------------------------------------| ---------------- | ------ |
-| master                               | ubuntu precise64 | 4.6    |
-| ubuntu-trusty64-gcc48-multiverse-1.5 | ubuntu thrusty64 | 4.8    |
-| (coming soon)                        | centos 6.5       | 4.8.2  |
+| Branch                                 | O/S              | gcc    |
+| -------------------------------------- | ---------------- | ------ |
+| master                                 | ubuntu precise64 | 4.6    |
+| ubuntu-trusty64-gcc48-multiverse-1.5.8 | ubuntu thrusty64 | 4.8    |
+| (coming soon)                          | centos 6.5       | 4.8.2  |
 
 
 Let's walk the walk
