@@ -12,7 +12,7 @@ Vagrant.configure(2) do |config|
 
   # Every Vagrant development environment requires a box. You can search for
   # boxes at https://atlas.hashicorp.com/search.
-  config.vm.box = "hashicorp/precise64"
+  config.vm.box = "puppetlabs/centos-7.0-64-puppet"
 
   # Disable automatic box update checking. If you disable this, then
   # boxes will only be checked for updates when the user runs
@@ -50,6 +50,12 @@ Vagrant.configure(2) do |config|
   #   # Customize the amount of memory on the VM:
   #   vb.memory = "1024"
   # end
+  config.vm.provider "virtualbox" do |vb|
+    # Display the VirtualBox GUI when booting the machine
+    vb.gui = true
+    # Customize the amount of memory on the VM:
+  #  vb.memory = "1024"
+  end
 
   config.vm.provider "virtualbox" do |vb|
     # Display the VirtualBox GUI when booting the machine
@@ -79,31 +85,26 @@ Vagrant.configure(2) do |config|
   # SHELL
 
   config.vm.provision "shell", inline: <<-SHELL
-    sudo apt-get update
-    sudo apt-get -q clean
-    sudo apt-get -q -y --no-install-recommends --no-upgrade install wget curl tcl build-essential zlib1g-dev
-    sudo apt-get -q -y --no-install-recommends --no-upgrade install manpages-dev autoconf2.13 automake libtool
-    sudo apt-get -q -y --no-install-recommends --no-upgrade install gcc g++ make cmake git jq
-    sudo apt-get -q -y --no-install-recommends --no-upgrade install libjpeg-dev libtiff4-dev libpng12-dev
-    sudo apt-get -q -y --no-install-recommends --no-upgrade install python2.7-dev python-setuptools ipython python-numpy python-sphinx
-    sudo apt-get -q -y --no-install-recommends --no-upgrade install python-markdown markdown
-    sudo apt-get -q -y --no-install-recommends --no-upgrade install libreadline-dev sqlite3 libsqlite3-dev libpcre3-dev
-    sudo apt-get -q -y --no-install-recommends --no-upgrade install libncursesw5-dev libncurses5-dev
-    sudo apt-get -q -y --no-install-recommends --no-upgrade install libssl-dev libdb-dev libgdbm-dev libbz2-dev
-    sudo apt-get -q -y --no-install-recommends --no-upgrade install libcloog-ppl-dev
-    sudo apt-get -q -y --no-install-recommends --no-upgrade install gfortran
-    sudo apt-get -q -y --no-install-recommends --no-upgrade install libgl1-mesa-dev libglew1.6-dev freeglut3 freeglut3-dev libxmu-dev libxi-dev
-    sudo apt-get -q -y --no-install-recommends --no-upgrade install doxygen mg
-    sudo apt-get -q clean
+    sudo yum -y install cmake git bzip2
+    sudo yum -y install gcc gcc-c++ gfortran
+    sudo yum -y install zlib-devel libjpeg-devel libtiff-devel libpng-devel
+    sudo yum -y install python-devel python-setuptools numpy
+    sudo yum -y install readline-devel sqlite-devel pcre pcre-devel ncurses-devel openssl-devel db4-devel gdbm-devel bzip2-devel
+    sudo yum -y install cloog-ppl cloog-ppl-devel
+    sudo yum -y install mesa-libGL-devel mesa-libGLU-devel freeglut freeglut-devel libXmu-devel libXi-devel
+    # #sudo yum -y upgrade curl
+    # sudo rpm -Uvh http://www.city-fan.org/ftp/contrib/yum-repo/city-fan.org-release-1-13.rhel6.noarch.rpm
+    sudo yum install -y libcurl curl nano
+    sudo yum install -y tcl
 
-    sudo addgroup developers
-    sudo adduser vagrant developers
+    sudo groupadd developers
+    sudo usermod -a -G developers vagrant
 
     if [ ! -e alembic-builder ] ; then
       git clone https://github.com/j-cube/alembic-builder
     fi
     cd alembic-builder
-    git checkout linux-multiverse-1.5.8
+    git checkout linux-gcc48-multiverse-1.5.8
     perl -pi -e 's/wget --content-disposition/wget -q --content-disposition/' do-*.sh
     source env-build-setup.sh
     ./do-build-all.sh
