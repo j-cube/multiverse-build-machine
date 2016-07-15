@@ -10,6 +10,7 @@ Note that we have multiple branches supporting multiple Linux versions (and `gcc
 | -------------------------------------- | ---------------- | ------ |
 | master                                 | ubuntu precise64 | 4.6    |
 | ubuntu-trusty64-gcc48-multiverse-1.5.8 | ubuntu thrusty64 | 4.8    |
+| centos-7-gcc48-multiverse-1.5.8        | Centos 7.0       | 4.8.5  |
 | (coming soon)                          | centos 6.5       | 4.8.2  |
 
 
