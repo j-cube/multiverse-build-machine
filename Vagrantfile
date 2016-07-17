@@ -12,7 +12,7 @@ Vagrant.configure(2) do |config|
 
   # Every Vagrant development environment requires a box. You can search for
   # boxes at https://atlas.hashicorp.com/search.
-  config.vm.box = "puppetlabs/centos-7.0-64-puppet"
+  config.vm.box = "puppetlabs/centos-6.6-64-nocm"
 
   # Disable automatic box update checking. If you disable this, then
   # boxes will only be checked for updates when the user runs
@@ -85,17 +85,26 @@ Vagrant.configure(2) do |config|
   # SHELL
 
   config.vm.provision "shell", inline: <<-SHELL
-    sudo yum -y install cmake git bzip2
-    sudo yum -y install gcc gcc-c++ gfortran
+    sudo rpm --import http://ftp.scientificlinux.org/linux/scientific/5x/x86_64/RPM-GPG-KEYs/RPM-GPG-KEY-cern
+    sudo wget -O /etc/yum.repos.d/slc6-devtoolset.repo http://linuxsoft.cern.ch/cern/devtoolset/slc6-devtoolset.repo
+    # sudo yum -y install devtoolset-2
+    sudo yum -y install devtoolset-2-toolchain devtoolset-2-binutils devtoolset-2-gcc devtoolset-2-gcc-c++ devtoolset-2-gcc-gfortran
+    echo "source /opt/rh/devtoolset-2/enable" >> ~/.bashrc
+    sudo echo "source /opt/rh/devtoolset-2/enable" >> /root/.bashrc
+    source /opt/rh/devtoolset-2/enable
+    sudo yum -y install cmake git bzip2 patch
     sudo yum -y install zlib-devel libjpeg-devel libtiff-devel libpng-devel
     sudo yum -y install python-devel python-setuptools numpy
     sudo yum -y install readline-devel sqlite-devel pcre pcre-devel ncurses-devel openssl-devel db4-devel gdbm-devel bzip2-devel
     sudo yum -y install cloog-ppl cloog-ppl-devel
     sudo yum -y install mesa-libGL-devel mesa-libGLU-devel freeglut freeglut-devel libXmu-devel libXi-devel
-    # #sudo yum -y upgrade curl
-    # sudo rpm -Uvh http://www.city-fan.org/ftp/contrib/yum-repo/city-fan.org-release-1-13.rhel6.noarch.rpm
-    sudo yum install -y libcurl curl nano
-    sudo yum install -y tcl
+    sudo rpm -Uvh http://www.city-fan.org/ftp/contrib/yum-repo/city-fan.org-release-1-13.rhel6.noarch.rpm
+    wget http://download.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm
+    sudo rpm -ivh epel-release-6-8.noarch.rpm
+    #sudo yum -y upgrade curl
+    sudo yum -y clean all
+    sudo yum -y install wget libcurl curl nano mg
+    sudo yum -y install tcl
 
     sudo groupadd developers
     sudo usermod -a -G developers vagrant
@@ -106,6 +115,8 @@ Vagrant.configure(2) do |config|
     cd alembic-builder
     git checkout linux-gcc48-multiverse-2.0.0rc1
     perl -pi -e 's/wget --content-disposition/wget -q --content-disposition/' do-*.sh
+    # fix temp problem on github for msgpack
+    perl -pi -e 's/wget -q --content-disposition/wget -q/' do-build-msgpack.sh
     source env-build-setup.sh
     ./do-build-all.sh
   SHELL
