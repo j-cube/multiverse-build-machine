@@ -91,7 +91,7 @@ Vagrant.configure(2) do |config|
     sudo yum -y install python-devel python-setuptools numpy
     sudo yum -y install readline-devel sqlite-devel pcre pcre-devel ncurses-devel openssl-devel db4-devel gdbm-devel bzip2-devel
     sudo yum -y install cloog-ppl cloog-ppl-devel
-    sudo yum -y install mesa-libGL-devel mesa-libGLU-devel freeglut freeglut-devel libXmu-devel libXi-devel
+    sudo yum -y install mesa-libGL-devel mesa-libGLU-devel freeglut freeglut-devel libXmu-devel libXi-devel glew-devel
     # #sudo yum -y upgrade curl
     # sudo rpm -Uvh http://www.city-fan.org/ftp/contrib/yum-repo/city-fan.org-release-1-13.rhel6.noarch.rpm
     sudo yum install -y libcurl curl nano
