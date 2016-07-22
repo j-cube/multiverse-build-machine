@@ -11,8 +11,8 @@ Note that we have multiple branches supporting multiple Linux versions (and `gcc
 | master                                 | ubuntu precise64 | 4.6    |
 | ubuntu-trusty64-gcc48-multiverse-1.5.8 | ubuntu thrusty64 | 4.8    |
 | centos-7-gcc48-multiverse-1.5.8        | Centos 7.0       | 4.8.5  |
-| centos-7-gcc48-multiverse-2.0.0rc1     | Centos 7.0       | 4.8.5  |
-| (coming soon)                          | centos 6.5       | 4.8.2  |
+| centos-7-gcc48-multiverse-2.0.0        | Centos 7.0       | 4.8.5  |
+| centos-6-gcc48-multiverse-2.0.0        | Centos 6.6       | 4.8.2  |
 
 
 Let's walk the walk

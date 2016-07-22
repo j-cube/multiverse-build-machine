@@ -104,7 +104,7 @@ Vagrant.configure(2) do |config|
       git clone https://github.com/j-cube/alembic-builder
     fi
     cd alembic-builder
-    git checkout linux-gcc48-multiverse-2.0.0rc1
+    git checkout linux-gcc48-multiverse-2.0.0
     perl -pi -e 's/wget --content-disposition/wget -q --content-disposition/' do-*.sh
     source env-build-setup.sh
     ./do-build-all.sh
