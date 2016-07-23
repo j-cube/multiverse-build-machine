@@ -33,8 +33,8 @@ This will create a VM using Vagrant and build multiverse in it, now login an che
 ```
 $ vagrant ssh
 vagrant@precise64:~$ ls /opt/jcube
-bin  docs include  lib  multiverse-1.5.8 share
-vagrant@precise64:~$ ls /opt/jcube/multiverse-1.5.8/bin/
+bin  docs include  lib  multiverse-2.0.0 share
+vagrant@precise64:~$ ls /opt/jcube/multiverse-2.0.0/bin/
 ...
 abcconvert
 abcecho
