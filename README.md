@@ -1,7 +1,7 @@
-multiverse build machine
+Multiverse build machine
 ========================
 
-Completely automates the build process for [multiverse](https://github.com/j-cube/multiverse) by using [Vagrant](https://www.vagrantup.com/)
+Completely automates the build process for [Multiverse](https://github.com/j-cube/multiverse) by using [Vagrant](https://www.vagrantup.com/)
 and [alembic-builder](https://github.com/j-cube/alembic-builder).
 
 Note that we have multiple branches supporting multiple Linux versions (and `gcc` versions that match the [VFX reference platform](http://www.vfxplatform.com))
@@ -10,7 +10,9 @@ Note that we have multiple branches supporting multiple Linux versions (and `gcc
 | -------------------------------------- | ---------------- | ------ |
 | master                                 | ubuntu precise64 | 4.6    |
 | ubuntu-trusty64-gcc48-multiverse-1.5.8 | ubuntu thrusty64 | 4.8    |
-| (coming soon)                          | centos 6.5       | 4.8.2  |
+| centos-7-gcc48-multiverse-1.5.8        | Centos 7.0       | 4.8.5  |
+| centos-7-gcc48-multiverse-2.0.0        | Centos 7.0       | 4.8.5  |
+| centos-6-gcc48-multiverse-2.0.0        | Centos 6.6       | 4.8.2  |
 
 
 Let's walk the walk
@@ -31,8 +33,8 @@ This will create a VM using Vagrant and build multiverse in it, now login an che
 ```
 $ vagrant ssh
 vagrant@precise64:~$ ls /opt/jcube
-bin  docs include  lib  multiverse-1.5.8 share
-vagrant@precise64:~$ ls /opt/jcube/multiverse-1.5.8/bin/
+bin  docs include  lib  multiverse-2.0.0 share
+vagrant@precise64:~$ ls /opt/jcube/multiverse-2.0.0/bin/
 ...
 abcconvert
 abcecho
